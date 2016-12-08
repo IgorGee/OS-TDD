@@ -7,7 +7,9 @@
     "test": "jest --watchAll"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "inquirer": "^2.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
