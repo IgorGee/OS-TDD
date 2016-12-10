@@ -1,6 +1,7 @@
 import System from './System'
 import Disk from './IODevice/Disk'
 import Printer from './IODevice/Printer'
+import Process from './Process'
 
 describe('System', () => {
   let system
@@ -33,6 +34,26 @@ describe('System', () => {
 
     it('has an empty array as the memory management', () => {
       expect(system.memory).toEqual([])
+    })
+  })
+
+  describe('Process addition', () => {
+    const processSize = 123
+    const processPriority = 12
+    let proc
+
+    beforeEach(() => {
+      proc = new Process(processSize, processPriority)
+    })
+
+    it('adds a memory block to memory with the process\' id', () => {
+      system.allocateMemory(proc)
+      expect(system.memory.length).toEqual(1)
+
+      const block = system.memory[0]
+      const blockSize = block.lastByte - block.firstByte + 1
+      expect(block.pid).toEqual(proc.id)
+      expect(blockSize).toEqual(proc.size)
     })
   })
 })
