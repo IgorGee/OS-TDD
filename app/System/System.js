@@ -16,4 +16,8 @@ export default class System {
     const block = new Block(proc.id, 0, proc.size - 1)
     this.memory.push(block)
   }
+
+  pushReadyQueue(proc) {
+    this.readyQueue.push(proc)
+  }
 }

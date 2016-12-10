@@ -55,5 +55,10 @@ describe('System', () => {
       expect(block.pid).toEqual(proc.id)
       expect(blockSize).toEqual(proc.size)
     })
+
+    it('adds the process to the ready queue', () => {
+      system.pushReadyQueue(proc)
+      expect(system.readyQueue.length).toEqual(1)
+    })
   })
 })
