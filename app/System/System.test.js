@@ -26,5 +26,13 @@ describe('System', () => {
     it('has Printer objects in the printers property', () => {
       expect(system.printers[0] instanceof Printer).toEqual(true)
     })
+
+    it('has an empty array as a ready queue', () => {
+      expect(system.readyQueue).toEqual([])
+    })
+
+    it('has an empty array as the memory management', () => {
+      expect(system.memory).toEqual([])
+    })
   })
 })

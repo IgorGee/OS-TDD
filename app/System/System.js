@@ -2,6 +2,9 @@ import Disk from './IODevice/Disk'
 import Printer from './IODevice/Printer'
 
 export default class System {
+  readyQueue = []
+  memory = []
+
   constructor(ramSize, diskQuantity, printerQuantity) {
     this.ramSize = ramSize
     this.disks = [...Array(diskQuantity)].map(() => new Disk)
