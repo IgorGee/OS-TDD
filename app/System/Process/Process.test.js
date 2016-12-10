@@ -4,7 +4,7 @@ describe('Process', () => {
   describe('Setup', () => {
     it('creates new processes with incremental ids', () => {
       const processes = [...Array(3)].map(() => new Process())
-      const pids = processes.map(p => p.pid)
+      const pids = processes.map(p => p.id)
       expect(pids).toEqual([1, 2, 3])
     })
 
