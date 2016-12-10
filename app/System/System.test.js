@@ -61,4 +61,25 @@ describe('System', () => {
       expect(system.readyQueue.length).toEqual(1)
     })
   })
+
+  describe('Process deletion', () => {
+    const processSize = 123
+    const processPriority = 12
+    let proc
+
+    beforeEach(() => {
+      proc = new Process(processSize, processPriority)
+      system.allocateMemory(proc)
+      system.pushReadyQueue(proc)
+      system.deleteProcess(1)
+    })
+
+    it('deletes the process from memory', () => {
+      expect(system.memory.length).toEqual(0)
+    })
+
+    it('deletes the process from the ready queue', () => {
+      expect(system.readyQueue.length).toEqual(0)
+    })
+  })
 })
