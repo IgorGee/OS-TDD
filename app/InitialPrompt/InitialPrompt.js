@@ -1,5 +1,5 @@
 export default class InitialPrompt {
-  static questions = [
+  questions = [
     {
       type: 'input',
       name: 'ram',
