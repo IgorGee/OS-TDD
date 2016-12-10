@@ -1,7 +1,8 @@
 export default class Block {
-  constructor(pid, firstByte, lastByte) {
-    this.pid = pid
+  constructor(proc, firstByte) {
+    this.pid = proc.id
+    this.size = proc.size
     this.firstByte = firstByte
-    this.lastByte = lastByte
+    this.lastByte = firstByte + this.size - 1
   }
 }

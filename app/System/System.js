@@ -13,7 +13,7 @@ export default class System {
   }
 
   allocateMemory(proc) {
-    const block = new Block(proc.id, 0, proc.size - 1)
+    const block = new Block(proc, 0)
     this.memory.push(block)
   }
 

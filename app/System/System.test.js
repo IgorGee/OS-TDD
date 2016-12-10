@@ -51,9 +51,8 @@ describe('System', () => {
       expect(system.memory.length).toEqual(1)
 
       const block = system.memory[0]
-      const blockSize = block.lastByte - block.firstByte + 1
       expect(block.pid).toEqual(proc.id)
-      expect(blockSize).toEqual(proc.size)
+      expect(block.size).toEqual(proc.size)
     })
 
     it('adds the process to the ready queue', () => {
