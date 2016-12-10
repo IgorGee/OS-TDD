@@ -27,7 +27,7 @@ describe('Initial prompt when starting program', () => {
     it('has the proper question values', () => {
       expect(question.type).toEqual('input')
       expect(question.name).toEqual('ram')
-      expect(question.message).toEqual('RAM Capacity')
+      expect(question.message).toEqual('RAM Capacity:')
     })
   })
 
@@ -41,7 +41,7 @@ describe('Initial prompt when starting program', () => {
     it('has the proper question values', () => {
       expect(question.type).toEqual('input')
       expect(question.name).toEqual('disks')
-      expect(question.message).toEqual('Disk Quantity')
+      expect(question.message).toEqual('Disk Quantity:')
     })
   })
 
@@ -55,7 +55,7 @@ describe('Initial prompt when starting program', () => {
     it('has the proper question values', () => {
       expect(question.type).toEqual('input')
       expect(question.name).toEqual('printers')
-      expect(question.message).toEqual('Printer Quantity')
+      expect(question.message).toEqual('Printer Quantity:')
     })
   })
 })
