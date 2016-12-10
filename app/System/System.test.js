@@ -1,4 +1,6 @@
 import System from './System'
+import Disk from './IODevice/Disk'
+import Printer from './IODevice/Printer'
 
 describe('System', () => {
   let system
@@ -15,6 +17,14 @@ describe('System', () => {
       expect(system.ramSize).toEqual(ramSize)
       expect(system.disks.length).toEqual(diskQuantity)
       expect(system.printers.length).toEqual(printerQuantity)
+    })
+
+    it('has Disk objects in the disks property', () => {
+      expect(system.disks[0] instanceof Disk).toEqual(true)
+    })
+
+    it('has Printer objects in the printers property', () => {
+      expect(system.printers[0] instanceof Printer).toEqual(true)
     })
   })
 })
