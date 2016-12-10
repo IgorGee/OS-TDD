@@ -60,6 +60,12 @@ describe('System', () => {
       system.pushReadyQueue(proc)
       expect(system.readyQueue.length).toEqual(1)
     })
+
+    it('adds process to memory and ready queue at once', () => {
+      system.addProcess(proc)
+      expect(system.memory.length).toEqual(1)
+      expect(system.readyQueue.length).toEqual(1)
+    })
   })
 
   describe('Process deletion', () => {

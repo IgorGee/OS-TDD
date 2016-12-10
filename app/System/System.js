@@ -21,6 +21,11 @@ export default class System {
     this.readyQueue.push(proc)
   }
 
+  addProcess(proc) {
+    this.allocateMemory(proc)
+    this.pushReadyQueue(proc)
+  }
+
   deleteProcess(pid) {
     const memoryIndex = this.memory.findIndex(block => block.id === pid)
     this.memory.splice(memoryIndex, 1)
