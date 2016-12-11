@@ -77,7 +77,7 @@ describe('System', () => {
       proc = new Process(processSize, processPriority)
       system.allocateMemory(proc)
       system.pushReadyQueue(proc)
-      system.deleteProcess(proc.id)
+      system.deleteProcess()
     })
 
     it('deletes the process from memory', () => {

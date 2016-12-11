@@ -71,12 +71,13 @@ export default class System {
     this.pushReadyQueue(proc)
   }
 
-  deleteProcess(pid) {
-    const memoryIndex = this.memory.findIndex(block => block.pid === pid)
+  deleteProcess() {
+    const proc = this.readyQueue.shift()
+
+    const memoryIndex = this.memory.findIndex(block => block.pid === proc.id)
     if (memoryIndex < 0) return
 
     this.memory.splice(memoryIndex, 1)
-    this.readyQueue.shift()
   }
 
   print(printerNumber, filename) {
