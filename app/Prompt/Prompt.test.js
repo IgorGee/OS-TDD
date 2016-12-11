@@ -1,10 +1,10 @@
-import InitialPrompt from './InitialPrompt'
+import Prompt from './Prompt'
 
 describe('Initial prompt when starting program', () => {
   let questions
 
   beforeEach(() =>
-    questions = new InitialPrompt().questions
+    questions = new Prompt().questions
   )
 
   it('has 3 questions', () => {

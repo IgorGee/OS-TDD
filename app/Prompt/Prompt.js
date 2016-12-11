@@ -1,7 +1,7 @@
 import Inquirer from 'inquirer'
 import System from '../System'
 
-export default class InitialPrompt {
+export default class Prompt {
   questions = [
     {
       type: 'input',
