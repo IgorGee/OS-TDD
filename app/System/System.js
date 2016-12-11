@@ -1,6 +1,7 @@
 import Disk from './IODevice/Disk'
 import Printer from './IODevice/Printer'
 import Block from './Block'
+import Process from './Process'
 
 export default class System {
   readyQueue = []
@@ -85,7 +86,10 @@ export default class System {
   }
 
   addProcess(proc) {
-    if (!this.allocateMemory(proc)) return false
+    if (!this.allocateMemory(proc)) {
+      Process.idCount -= 1
+      return false
+    }
     this.pushReadyQueue(proc)
     return true
   }
