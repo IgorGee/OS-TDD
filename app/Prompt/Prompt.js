@@ -1,5 +1,6 @@
 import Inquirer from 'inquirer'
 import System from '../System'
+import Process from '../System/Process'
 
 export default class Prompt {
   initial = [
@@ -59,6 +60,32 @@ export default class Prompt {
     try {
       const { ram, disks, printers } = await Inquirer.prompt(this.initial)
       return new System(ram, disks, printers)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async getCommand() {
+    try {
+      return await Inquirer.prompt(this.listening)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async getNewProcess() {
+    try {
+      const { size, priority } = await Inquirer.prompt(this.newProcess)
+      return new Process(size, priority)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async getFilename() {
+    try {
+      const { filename } = await Inquirer.prompt(this.newIOOperation)
+      return filename
     } catch (error) {
       console.error(error)
     }
