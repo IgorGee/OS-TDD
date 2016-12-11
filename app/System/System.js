@@ -27,9 +27,10 @@ export default class System {
   }
 
   deleteProcess(pid) {
-    const memoryIndex = this.memory.findIndex(block => block.id === pid)
-    this.memory.splice(memoryIndex, 1)
+    const memoryIndex = this.memory.findIndex(block => block.pid === pid)
+    if (memoryIndex < 0) return
 
+    this.memory.splice(memoryIndex, 1)
     this.readyQueue.shift()
   }
 }
