@@ -14,10 +14,12 @@ export default class IODevice {
 
     if (queue.length > 0) {
       console.log(`${deviceName}`)
-      console.log(`  Serving: P${queue[0].id}`)
+      console.log(`  Serving: P${queue[0].id} (File: ${queue[0].ioFileName})`)
       process.stdout.write('  Queued: ')
       if (queue.length > 1) {
-        queue.slice(1).forEach(proc => process.stdout.write(`P${proc.id} `))
+        queue.slice(1).forEach(proc => {
+          process.stdout.write(`P${proc.id} (File: ${proc.ioFileName})`)
+        })
         console.log()
       } else console.log()
     } else {
