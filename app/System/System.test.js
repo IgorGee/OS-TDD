@@ -117,5 +117,15 @@ describe('System', () => {
       const expectedStartAndIndex = { index: 0, start: 0 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
+
+    it('finds the smallest block between two blocks', () => {
+      system.addProcess(proc1)
+      system.addProcess(proc2)
+      system.addProcess(proc3)
+      system.deleteProcess(proc2.id)
+      const startAndIndex = system.getBestStartByteAndIndex(proc2)
+      const expectedStartAndIndex = { index: 1, start: 300 }
+      expect(startAndIndex).toEqual(expectedStartAndIndex)
+    })
   })
 })

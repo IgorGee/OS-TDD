@@ -36,6 +36,14 @@ export default class System {
         start = memory[memory.length - 1].lastByte + 1
         smallestFreeSpace = endSpace
       }
+
+      for (let i = 1; i < memory.length; i++) {
+        const emptySpace = memory[i].firstByte - memory[i - 1].lastByte
+        if (emptySpace < smallestFreeSpace && emptySpace >= proc.size) {
+          index = i
+          start = memory[i - 1].lastByte + 1
+        }
+      }
     }
 
     return { index, start }
