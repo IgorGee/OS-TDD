@@ -1,3 +1,6 @@
+import Inquirer from 'inquirer'
+import System from '../System'
+
 export default class InitialPrompt {
   questions = [
     {
@@ -20,8 +23,13 @@ export default class InitialPrompt {
     }
   ]
 
-  constructor() {
-
+  async getSystem() {
+    try {
+      const { ram, disks, printers } = await Inquirer.prompt(this.questions)
+      return new System(ram, disks, printers)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   positiveNumberValidation(input) {

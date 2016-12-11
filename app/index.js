@@ -1,3 +1,7 @@
-import fs from 'fs'
+import InitialPrompt from './InitialPrompt'
 
-console.log("Hello World")
+const startSystem = async () => {
+  const system = (new InitialPrompt).getSystem()
+}
+
+startSystem()
