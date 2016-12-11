@@ -57,7 +57,13 @@ export default class System {
   }
 
   pushReadyQueue(proc) {
-    this.readyQueue.push(proc)
+    if (this.readyQueue.length === 0) this.readyQueue.push(proc)
+    for (let i = 0; i < this.readyQueue.length; i++) {
+      if (proc.priority > this.readyQueue[i].priority) {
+        this.readyQueue.splice(i, 0, proc)
+        break
+      }
+    }
   }
 
   addProcess(proc) {

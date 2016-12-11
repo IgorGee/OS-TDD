@@ -128,4 +128,20 @@ describe('System', () => {
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
   })
+
+  describe('CPU scheduling', () => {
+    const proc1 = new Process(300, 1)
+    const proc2 = new Process(200, 3)
+    const proc3 = new Process(100, 2)
+
+    it('orders the processes in descending priority', () => {
+      system.pushReadyQueue(proc1)
+      system.pushReadyQueue(proc2)
+      expect(system.readyQueue[0]).toBe(proc2)
+      system.pushReadyQueue(proc3)
+      expect(system.readyQueue[0]).toBe(proc2)
+      expect(system.readyQueue[1]).toBe(proc3)
+      expect(system.readyQueue[2]).toBe(proc1)
+    })
+  })
 })
