@@ -100,24 +100,32 @@ export default class System {
   }
 
   print(printerNumber, filename) {
+    if (this.readyQueue.length === 0) return false
     const proc = this.readyQueue.shift()
     proc.ioFileName = filename
     this.printers[printerNumber - 1].add(proc)
+    return true
   }
 
   finishPrint(printerNumber) {
+    if (this.printers[printerNumber - 1].queue.length === 0) return false
     const proc = this.printers[printerNumber - 1].remove(proc)
     this.pushReadyQueue(proc)
+    return true
   }
 
   diskIO(diskNumber, filename) {
+    if (this.readyQueue.length === 0) return false
     const proc = this.readyQueue.shift()
     proc.ioFileName = filename
     this.disks[diskNumber - 1].add(proc)
+    return true
   }
 
   finishDiskIO(diskNumber) {
+    if (this.disks[diskNumber - 1].queue.length === 0) return false
     const proc = this.disks[diskNumber - 1].remove(proc)
     this.pushReadyQueue(proc)
+    return true
   }
 }

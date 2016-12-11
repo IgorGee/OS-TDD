@@ -15,20 +15,24 @@ const awaitCommand = async system => {
       case 'p':
         const newPrinterNumber = parseInt(command.substring(1))
         const pFilename = await (new Prompt).getFilename()
-        system.print(newPrinterNumber, pFilename)
+        if (!system.print(newPrinterNumber, pFilename))
+          console.log('There are no processes in CPU or Ready Queue')
         break
       case 'P':
         const finishPrinterNumber = parseInt(command.substring(1))
-        system.finishPrint(finishPrinterNumber)
+        if (!system.finishPrint(finishPrinterNumber))
+          console.log('There are no processes using this IO device')
         break
       case 'd':
         const newDiskNumber = parseInt(command.substring(1))
         const dFilename = await (new Prompt).getFilename()
-        system.diskIO(newDiskNumber, dFilename)
+        if (!system.diskIO(newDiskNumber, dFilename))
+          console.log('There are no processes in CPU or Ready Queue')
         break
       case 'D':
         const finishDiskNumber = parseInt(command.substring(1))
-        system.finishDiskIO(finishDiskNumber)
+        if (!system.finishDiskIO(finishDiskNumber))
+          console.log('There are no processes using this IO device')
         break
       case 'S':
         switch (command[1]) {
