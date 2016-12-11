@@ -121,6 +121,13 @@ describe('System', () => {
       const expectedStartAndIndex = { index: 1, start: 300 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
+
+    it('returns undefined if the process size is too big', () => {
+      const proc = new Process(system.ram + 1, 1)
+      const startAndIndex = system.getBestIndexAndStartByte(proc)
+      const expectedStartAndIndex = { index: undefined, start: undefined }
+      expect(startAndIndex).toEqual(expectedStartAndIndex)
+    })
   })
 
   describe('CPU scheduling', () => {

@@ -19,29 +19,37 @@ export default class System {
     let start
     let smallestFreeSpace = this.ramSize
 
-    if (memory.length === 0) {
-      index = 0
-      start = 0
-    } else {
-      const startSpace = memory[0].firstByte - 0
-      const endSpace = this.ramSize - memory[memory.length - 1].lastByte
-
-      if (startSpace < smallestFreeSpace && startSpace >= proc.size) {
+    if (smallestFreeSpace >= proc.size) {
+      if (memory.length === 0) {
         index = 0
         start = 0
-        smallestFreeSpace = startSpace
-      }
-      if (endSpace < smallestFreeSpace && endSpace >= proc.size) {
-        index = memory.length
-        start = memory[memory.length - 1].lastByte + 1
-        smallestFreeSpace = endSpace
-      }
+      } else {
+        const startSpace = memory[0].firstByte - 0
+        const endSpace = this.ramSize - memory[memory.length - 1].lastByte
 
-      for (let i = 1; i < memory.length; i++) {
-        const emptySpace = memory[i].firstByte - memory[i - 1].lastByte
-        if (emptySpace < smallestFreeSpace && emptySpace >= proc.size) {
-          index = i
-          start = memory[i - 1].lastByte + 1
+        if (startSpace < smallestFreeSpace && startSpace >= proc.size) {
+          index = 0
+          start = 0
+          smallestFreeSpace = startSpace
+        }
+        if (endSpace < smallestFreeSpace && endSpace >= proc.size) {
+          index = memory.length
+          start = memory[memory.length - 1].lastByte + 1
+          smallestFreeSpace = endSpace
+        }
+
+        for (let i = 1; i < memory.length; i++) {
+          const emptySpace = memory[i].firstByte - memory[i - 1].lastByte
+          if (emptySpace < smallestFreeSpace && emptySpace >= proc.size) {
+            index = i
+            start = memory[i - 1].lastByte + 1
+          }
+        }
+
+        // No room at all, we never found the chance to make it smaller
+        if (smallestFreeSpace === this.ramSize) {
+          index = undefined
+          start = undefined
         }
       }
     }
