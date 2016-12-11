@@ -75,7 +75,9 @@ export default class Prompt {
 
   async getNewProcess() {
     try {
-      const { size, priority } = await Inquirer.prompt(this.newProcess)
+      let { size, priority } = await Inquirer.prompt(this.newProcess)
+      size = parseInt(size)
+      priority = parseInt(priority)
       return new Process(size, priority)
     } catch (error) {
       console.error(error)
