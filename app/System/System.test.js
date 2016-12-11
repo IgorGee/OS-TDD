@@ -73,6 +73,17 @@ describe('System', () => {
       expect(system.memory.length).toEqual(0)
       expect(system.readyQueue.length).toEqual(0)
     })
+
+    it('does not add process to memory when memory is full', () => {
+      const proc1 = new Process(system.ramSize / 2, 1)
+      const proc2 = new Process(system.ramSize / 2, 1)
+      const tinyProc = new Process(20, 2)
+      system.addProcess(proc1)
+      system.addProcess(proc2)
+      system.addProcess(tinyProc)
+      expect(system.memory.length).toEqual(2)
+      expect(system.readyQueue.length).toEqual(2)
+    })
   })
 
   describe('Process deletion', () => {
