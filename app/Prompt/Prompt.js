@@ -2,7 +2,7 @@ import Inquirer from 'inquirer'
 import System from '../System'
 
 export default class Prompt {
-  questions = [
+  initial = [
     {
       type: 'input',
       name: 'ram',
@@ -25,7 +25,7 @@ export default class Prompt {
 
   async getSystem() {
     try {
-      const { ram, disks, printers } = await Inquirer.prompt(this.questions)
+      const { ram, disks, printers } = await Inquirer.prompt(this.initial)
       return new System(ram, disks, printers)
     } catch (error) {
       console.error(error)

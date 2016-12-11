@@ -4,7 +4,7 @@ describe('Initial prompt when starting program', () => {
   let questions
 
   beforeEach(() =>
-    questions = new Prompt().questions
+    questions = new Prompt().initial
   )
 
   it('has 3 questions', () => {
