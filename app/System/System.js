@@ -60,8 +60,11 @@ export default class System {
   allocateMemory(proc) {
     const memory = this.memory
     const { index, start } = this.getBestIndexAndStartByte(proc)
+    if (index === undefined) return false
+
     const block = new Block(proc, start)
     memory.splice(index, 0, block)
+    return true
   }
 
   pushReadyQueue(proc) {
@@ -75,8 +78,9 @@ export default class System {
   }
 
   addProcess(proc) {
-    this.allocateMemory(proc)
+    if (!this.allocateMemory(proc)) return false
     this.pushReadyQueue(proc)
+    return true
   }
 
   deleteProcess() {
