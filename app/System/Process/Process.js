@@ -1,5 +1,6 @@
 export default class Process {
   static idCount = 1
+  ioFileName = ''
 
   constructor(processSize, processPriority) {
     this.id = Process.idCount
