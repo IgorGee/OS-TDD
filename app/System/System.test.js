@@ -68,7 +68,7 @@ describe('System', () => {
     })
 
     it('does not add process to memory when it is bigger than RAM', () => {
-      const bigProc = new Process(system.ram + 1, 1)
+      const bigProc = new Process(system.ramSize + 1, 1)
       system.addProcess(bigProc)
       expect(system.memory.length).toEqual(0)
       expect(system.readyQueue.length).toEqual(0)
