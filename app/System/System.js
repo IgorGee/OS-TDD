@@ -25,7 +25,7 @@ export default class System {
         start = 0
       } else {
         const startSpace = memory[0].firstByte - 0
-        const endSpace = this.ramSize - memory[memory.length - 1].lastByte
+        const endSpace = this.ramSize - memory[memory.length - 1].lastByte - 1
 
         if (startSpace < smallestFreeSpace && startSpace >= proc.size) {
           index = 0
@@ -39,7 +39,7 @@ export default class System {
         }
 
         for (let i = 1; i < memory.length; i++) {
-          const emptySpace = memory[i].firstByte - memory[i - 1].lastByte
+          const emptySpace = memory[i].firstByte - memory[i - 1].lastByte - 1
           if (emptySpace < smallestFreeSpace && emptySpace >= proc.size) {
             index = i
             start = memory[i - 1].lastByte + 1

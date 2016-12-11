@@ -146,6 +146,25 @@ describe('System', () => {
       const expectedStartAndIndex = { index: undefined, start: undefined }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
+
+    it('works properly with size 1 processes', () => {
+      const proc1 = new Process(1, 1)
+      const proc2 = new Process(1, 1)
+      const proc3 = new Process(1, 1)
+      const startAndIndex1 = system.getBestIndexAndStartByte(proc1)
+      const expectedStartAndIndex1 = { index: 0, start: 0 }
+      expect(startAndIndex1).toEqual(expectedStartAndIndex1)
+      system.addProcess(proc1)
+
+      const startAndIndex2 = system.getBestIndexAndStartByte(proc2)
+      const expectedStartAndIndex2 = { index: 1, start: 1 }
+      expect(startAndIndex2).toEqual(expectedStartAndIndex2)
+      system.addProcess(proc2)
+
+      const startAndIndex3 = system.getBestIndexAndStartByte(proc2)
+      const expectedStartAndIndex3 = { index: 2, start: 2 }
+      expect(startAndIndex3).toEqual(expectedStartAndIndex3)
+    })
   })
 
   describe('CPU scheduling', () => {
