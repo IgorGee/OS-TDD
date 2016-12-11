@@ -70,7 +70,7 @@ export default class Prompt {
   }
 
   commandValidation(input) {
-    const commands = /[At]|[DdPp]\d|Sr|Si|Sm/
+    const commands = /^[At]$|^[DdPp]\d+$|^Sr$|^Si$|^Sm$/
     const valid = commands.test(input)
     if (valid) return valid
     else return "That is not a valid command"
