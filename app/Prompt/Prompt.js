@@ -58,7 +58,10 @@ export default class Prompt {
 
   async getSystem() {
     try {
-      const { ram, disks, printers } = await Inquirer.prompt(this.initial)
+      let { ram, disks, printers } = await Inquirer.prompt(this.initial)
+      ram = parseInt(ram)
+      disks = parseInt(disks)
+      printers = parseInt(printers)
       return new System(ram, disks, printers)
     } catch (error) {
       console.error(error)

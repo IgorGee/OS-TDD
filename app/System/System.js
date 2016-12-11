@@ -128,4 +128,35 @@ export default class System {
     this.pushReadyQueue(proc)
     return true
   }
+
+  prettyPrintReadyQueue() {
+    const queue = this.readyQueue
+
+    if (queue.length > 0) {
+      console.log(`CPU: P${queue[0].id}`)
+      process.stdout.write('Ready: ')
+      if (queue.length > 1) {
+        queue.slice(1).forEach(proc => process.stdout.write(`P${proc.id} `))
+        console.log()
+      } else console.log()
+    } else {
+      console.log('CPU: ')
+      console.log('Ready: ')
+    }
+  }
+
+  prettyPrintIOQueue() {
+    this.printers.forEach((printer, index) => {
+      printer.prettyPrint(`P${index + 1}`)
+    })
+    this.disks.forEach((disk, index) => {
+      disk.prettyPrint(`D${index + 1}`)
+    })
+  }
+
+  prettyPrintMemory() {
+    this.memory.forEach(block => {
+      console.log(`P${block.pid} <${block.firstByte}, ${block.lastByte}>`)
+    })
+  }
 }

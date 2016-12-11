@@ -37,14 +37,13 @@ const awaitCommand = async system => {
       case 'S':
         switch (command[1]) {
           case 'r':
-            console.log(system.readyQueue)
+            system.prettyPrintReadyQueue()
             break
           case 'i':
-            console.log(system.printers)
-            console.log(system.disks)
+            system.prettyPrintIOQueue()
             break
           case 'm':
-            console.log(system.memory)
+            system.prettyPrintMemory()
             break
           default:
             console.log("Incorrect command")
