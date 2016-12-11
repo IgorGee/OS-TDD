@@ -12,6 +12,35 @@ export default class System {
     this.printers = [...Array(printerQuantity)].map(() => new Printer)
   }
 
+  getBestStartByteAndIndex(proc) {
+    const memory = this.memory
+
+    let index
+    let start
+    let smallestFreeSpace = this.ramSize
+
+    if (memory.length === 0) {
+      index = 0
+      start = 0
+    } else {
+      const startSpace = memory[0].firstByte - 0
+      const endSpace = this.ramSize - memory[memory.length - 1].lastByte
+
+      if (startSpace < smallestFreeSpace && startSpace >= proc.size) {
+        index = 0
+        start = 0
+        smallestFreeSpace = startSpace
+      }
+      if (endSpace < smallestFreeSpace && endSpace >= proc.size) {
+        index = memory.length
+        start = memory[memory.length - 1].lastByte + 1
+        smallestFreeSpace = endSpace
+      }
+    }
+
+    return { index, start }
+  }
+
   allocateMemory(proc) {
     const memory = this.memory
     if (memory.length === 0) memory.push(new Block(proc, 0))
