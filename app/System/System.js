@@ -51,11 +51,9 @@ export default class System {
 
   allocateMemory(proc) {
     const memory = this.memory
-    if (memory.length === 0) memory.push(new Block(proc, 0))
-    else {
-      const block = new Block(proc, memory[memory.length - 1].lastByte + 1)
-      memory.push(block)
-    }
+    const { index, start } = this.getBestIndexAndStartByte(proc)
+    const block = new Block(proc, start)
+    memory.splice(index, 0, block)
   }
 
   pushReadyQueue(proc) {
