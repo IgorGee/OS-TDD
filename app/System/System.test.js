@@ -144,4 +144,31 @@ describe('System', () => {
       expect(system.readyQueue[2]).toBe(proc1)
     })
   })
+
+  describe('I/O Device handling', () => {
+    const proc1 = new Process(300, 1)
+    const proc2 = new Process(200, 2)
+    const proc3 = new Process(100, 3)
+    const proc4 = new Process(400, 4)
+
+    beforeEach(() => {
+      [proc1, proc2, proc3, proc4].forEach(proc => system.addProcess(proc))
+    })
+
+    it('moves current process into the respective printer queue', () => {
+      expect(system.readyQueue.length).toEqual(4)
+      system.print(1, '1.txt')
+      expect(system.printers[0].queue[0].id).toEqual(proc4.id)
+      expect(system.printers[0].queue[0].ioFileName).toEqual('1.txt')
+      expect(system.readyQueue.length).toEqual(3)
+    })
+
+    it('moves current process into the respective disk queue', () => {
+      expect(system.readyQueue.length).toEqual(4)
+      system.diskIO(1, '1.txt')
+      expect(system.disks[0].queue[0].id).toEqual(proc4.id)
+      expect(system.disks[0].queue[0].ioFileName).toEqual('1.txt')
+      expect(system.readyQueue.length).toEqual(3)
+    })
+  })
 })

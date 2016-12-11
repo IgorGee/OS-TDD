@@ -78,4 +78,16 @@ export default class System {
     this.memory.splice(memoryIndex, 1)
     this.readyQueue.shift()
   }
+
+  print(printerNumber, filename) {
+    const proc = this.readyQueue.shift()
+    proc.ioFileName = filename
+    this.printers[printerNumber - 1].add(proc)
+  }
+
+  diskIO(diskNumber, filename) {
+    const proc = this.readyQueue.shift()
+    proc.ioFileName = filename
+    this.disks[diskNumber - 1].add(proc)
+  }
 }
