@@ -2,6 +2,7 @@ import System from './System'
 import Disk from './IODevice/Disk'
 import Printer from './IODevice/Printer'
 import Process from './Process'
+import Block from './Block'
 
 describe('System', () => {
   let system
@@ -101,28 +102,21 @@ describe('System', () => {
     })
 
     it('finds the smallest block after the last block', () => {
-      system.addProcess(proc1)
-      system.addProcess(proc5)
-      system.deleteProcess(proc1.id)
+      system.memory = [new Block(proc5, 300)]
       const startAndIndex = system.getBestIndexAndStartByte(proc3)
       const expectedStartAndIndex = { index: 1, start: ramSize - 100 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
 
     it('finds the smallest block before the first block', () => {
-      system.addProcess(proc1)
-      system.addProcess(proc5)
-      system.deleteProcess(proc1.id)
+      system.memory = [new Block(proc5, 300)]
       const startAndIndex = system.getBestIndexAndStartByte(proc2)
       const expectedStartAndIndex = { index: 0, start: 0 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
 
     it('finds the smallest block between two blocks', () => {
-      system.addProcess(proc1)
-      system.addProcess(proc2)
-      system.addProcess(proc3)
-      system.deleteProcess(proc2.id)
+      system.memory = [new Block(proc1, 0), new Block(proc3, 500)]
       const startAndIndex = system.getBestIndexAndStartByte(proc2)
       const expectedStartAndIndex = { index: 1, start: 300 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
