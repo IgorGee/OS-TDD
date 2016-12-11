@@ -7,7 +7,7 @@ const awaitCommand = async system => {
     switch (command[0]) {
       case 'A':
         const proc = await (new Prompt).getNewProcess()
-        system.addProcess(proc)
+        if (!system.addProcess(proc)) console.log("No room for this process")
         break
       case 't':
         system.deleteProcess()
