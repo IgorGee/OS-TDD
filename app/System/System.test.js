@@ -151,6 +151,13 @@ describe('System', () => {
       expect(system.readyQueue[1]).toBe(proc3)
       expect(system.readyQueue[2]).toBe(proc1)
     })
+
+    it('adds the process to the queue when it is the smallest priority', () => {
+      system.pushReadyQueue(proc2)
+      system.pushReadyQueue(proc1)
+      expect(system.readyQueue[0]).toBe(proc2)
+      expect(system.readyQueue[1]).toBe(proc1)
+    })
   })
 
   describe('I/O Device handling', () => {
