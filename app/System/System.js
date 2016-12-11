@@ -12,7 +12,7 @@ export default class System {
     this.printers = [...Array(printerQuantity)].map(() => new Printer)
   }
 
-  getBestStartByteAndIndex(proc) {
+  getBestIndexAndStartByte(proc) {
     const memory = this.memory
 
     let index

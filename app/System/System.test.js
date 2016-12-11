@@ -95,7 +95,7 @@ describe('System', () => {
     const proc5 = new Process(ramSize - proc1.size - 100, 5)
 
     it('places memory at the beginning when the memory is empty', () => {
-      const startAndIndex = system.getBestStartByteAndIndex(proc1)
+      const startAndIndex = system.getBestIndexAndStartByte(proc1)
       const expectedStartAndIndex = { index: 0, start: 0 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
@@ -104,7 +104,7 @@ describe('System', () => {
       system.addProcess(proc1)
       system.addProcess(proc5)
       system.deleteProcess(proc1.id)
-      const startAndIndex = system.getBestStartByteAndIndex(proc3)
+      const startAndIndex = system.getBestIndexAndStartByte(proc3)
       const expectedStartAndIndex = { index: 1, start: ramSize - 100 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
@@ -113,7 +113,7 @@ describe('System', () => {
       system.addProcess(proc1)
       system.addProcess(proc5)
       system.deleteProcess(proc1.id)
-      const startAndIndex = system.getBestStartByteAndIndex(proc2)
+      const startAndIndex = system.getBestIndexAndStartByte(proc2)
       const expectedStartAndIndex = { index: 0, start: 0 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
@@ -123,7 +123,7 @@ describe('System', () => {
       system.addProcess(proc2)
       system.addProcess(proc3)
       system.deleteProcess(proc2.id)
-      const startAndIndex = system.getBestStartByteAndIndex(proc2)
+      const startAndIndex = system.getBestIndexAndStartByte(proc2)
       const expectedStartAndIndex = { index: 1, start: 300 }
       expect(startAndIndex).toEqual(expectedStartAndIndex)
     })
