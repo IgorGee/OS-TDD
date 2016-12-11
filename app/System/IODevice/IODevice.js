@@ -6,6 +6,6 @@ export default class IODevice {
   }
 
   remove() {
-    this.queue.shift()
+    return this.queue.shift()
   }
 }

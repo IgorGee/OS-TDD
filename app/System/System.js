@@ -85,9 +85,19 @@ export default class System {
     this.printers[printerNumber - 1].add(proc)
   }
 
+  finishPrint(printerNumber) {
+    const proc = this.printers[printerNumber - 1].remove(proc)
+    this.pushReadyQueue(proc)
+  }
+
   diskIO(diskNumber, filename) {
     const proc = this.readyQueue.shift()
     proc.ioFileName = filename
     this.disks[diskNumber - 1].add(proc)
+  }
+
+  finishDiskIO(diskNumber) {
+    const proc = this.disks[diskNumber - 1].remove(proc)
+    this.pushReadyQueue(proc)
   }
 }

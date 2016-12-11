@@ -170,5 +170,25 @@ describe('System', () => {
       expect(system.disks[0].queue[0].ioFileName).toEqual('1.txt')
       expect(system.readyQueue.length).toEqual(3)
     })
+
+    it('terminates the print task and moves it back into ready queue', () => {
+      const originalProc = system.readyQueue[0]
+      expect(system.readyQueue.length).toEqual(4)
+      system.print(1, '1.txt')
+      system.finishPrint(1)
+      expect(system.readyQueue.length).toEqual(4)
+      expect(system.printers[0].queue.length).toEqual(0)
+      expect(system.readyQueue[0]).toBe(originalProc)
+    })
+
+    it('terminates the diskIO task and moves it back into ready queue', () => {
+      const originalProc = system.readyQueue[0]
+      expect(system.readyQueue.length).toEqual(4)
+      system.diskIO(1, '1.txt')
+      system.finishDiskIO(1)
+      expect(system.readyQueue.length).toEqual(4)
+      expect(system.disks[0].queue.length).toEqual(0)
+      expect(system.readyQueue[0]).toBe(originalProc)
+    })
   })
 })
