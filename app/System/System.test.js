@@ -105,6 +105,10 @@ describe('System', () => {
     it('deletes the process from the ready queue', () => {
       expect(system.readyQueue.length).toEqual(0)
     })
+
+    it('returns false if ready queue is empty', () => {
+      expect(system.deleteProcess()).toEqual(false)
+    })
   })
 
   describe('Memory management', () => {

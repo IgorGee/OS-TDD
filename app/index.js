@@ -10,7 +10,8 @@ const awaitCommand = async system => {
         if (!system.addProcess(proc)) console.log("No room for this process")
         break
       case 't':
-        system.deleteProcess()
+        if (!system.deleteProcess())
+          console.log("There are no processes in CPU or Ready Queue")
         break
       case 'p':
         const newPrinterNumber = parseInt(command.substring(1))
