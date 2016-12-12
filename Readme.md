@@ -1,3 +1,28 @@
+# Test Driven Development
+
+This is a demonstration and somewhat of a guide on developing in a TDD style.
+For the moment, this project will only demonstrate the unit test aspect of TDD.
+Unit tests are invaluable when developing any project, and gives you the
+confidence you need to make changes as the project grows. It is certainly a
+difficult habit to get into, but it is definitely worth the effort.
+
+Going through the commits, you will see that most commits come with a
+corresponding set of test methods. To get a sense of what it's like developing
+in a TDD style, in the hopes that you too will adopt this style of developing,
+you should read the `describe` function, and then the subsequent `it` function
+that follow.
+
+The `describe` function is meant to set the focus of the subsequent unit tests.
+The `it` function itself is the extremely specific scenario for which we will
+test. It is *the* unit test. The `it` function will set the focus for what
+"feature" we are trying to achieve. You could also say that the function is
+trying to focus on the behavior we wish to see. This is also why this style of
+development is also sometimes called **Behavior Driven Development**.
+
+Below is the specification of what we want to achieve. It is *definitely* an
+arbitrary project chosen for this TDD guide, and *definitely not* an assignment
+from my Operating Systems course that I used as a pawn for this guide.
+
 # Create an Operating System
 
 ## Tasks
